@@ -15,7 +15,7 @@ flowchart LR
   D --> R
   R --> G{grade: enough evidence?}
   G -- no, retry once --> W[rewrite query] --> R
-  G -- yes --> N[answer with [n] citations]
+  G -- yes --> N["answer with [n] citations"]
   N --> K[citation check] --> O[Answer + sources + trace]
 ```
 
