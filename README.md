@@ -119,12 +119,3 @@ or Docker SDK) works; keep the corpus small and store API keys as Space secrets.
 - **Paper-level train/test split** (`hash_split`): the fine-tuned embedder never sees evaluation papers.
 - **Collection per embedder**: baseline and fine-tuned indexes can't be mixed by accident.
 
-## Known limitations (put an honest version of this in your write-up)
-- Evaluation questions are LLM-generated from single chunks: they favour lexical overlap and ignore multi-paper
-  questions. Review them by hand, and say so.
-- PDF extraction is imperfect (tables, equations, two-column edge cases, scanned PDFs are skipped).
-- The LLM judge is itself an LLM: treat correctness/faithfulness numbers as indicative, not ground truth.
-- RAGAS is not included on purpose: its API changes often. The retrieval metrics are computed directly and the
-  answer judge is a ~20-line prompt in `evaluation/run_eval.py`; swap RAGAS in if you want to compare.
-- Dependency versions in `requirements.txt` are lower bounds. If pip reports conflicts, install, run the tests,
-  and pin what works with `pip freeze`.
