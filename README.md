@@ -109,13 +109,3 @@ docker run --env-file .env -v "$(pwd)/data:/app/data" -p 8501:8501 scholaragent 
 ```
 Build the index locally first and ship `data/` (or mount it). For a free public demo, Hugging Face Spaces (Streamlit
 or Docker SDK) works; keep the corpus small and store API keys as Space secrets.
-
-## Design decisions worth explaining in interviews
-- **Section-aware chunking** with title + section prefixed to each chunk: better retrieval and better citations.
-- **Hybrid search + RRF**: dense retrieval misses exact terms (model names, acronyms), BM25 misses paraphrases.
-- **One rerank pass against the original question**, so rewritten sub-queries can't drift from what was asked.
-- **Grade-then-retry** loop, capped (`MAX_ATTEMPTS`), instead of trusting the first retrieval.
-- **Citation check is programmatic**: invalid `[n]` markers are removed and ungrounded answers are flagged.
-- **Paper-level train/test split** (`hash_split`): the fine-tuned embedder never sees evaluation papers.
-- **Collection per embedder**: baseline and fine-tuned indexes can't be mixed by accident.
-
